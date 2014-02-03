@@ -29,7 +29,10 @@ class JP
     console.log "connection close"
 
   sendMessage: (msgObject) ->
-    message = JSON.stringify(msgObject)
+    if typeof msgObject == "object"
+      message = JSON.stringify(msgObject)
+    else
+      message = msgObject
     that = this
     if this.ws is null
       this.startWebSocket ->

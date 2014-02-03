@@ -40,7 +40,11 @@
 
     JP.prototype.sendMessage = function(msgObject) {
       var message, that;
-      message = JSON.stringify(msgObject);
+      if (typeof msgObject === "object") {
+        message = JSON.stringify(msgObject);
+      } else {
+        message = msgObject;
+      }
       that = this;
       if (this.ws === null) {
         return this.startWebSocket(function() {
