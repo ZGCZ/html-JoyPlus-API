@@ -17,9 +17,19 @@
     };
 
     JP.prototype.handleMessage = function(message) {
-      var data;
+      var data, dataObject, handler, _i, _len, _ref, _results;
       data = message.data;
-      return console.log(data);
+      dataObject = JSON.parse(data);
+      if ("event" in dataObject) {
+        console.log(dataObject);
+        _ref = this.eventHandlers;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          handler = _ref[_i];
+          _results.push(handler.call(this, dataObject));
+        }
+        return _results;
+      }
     };
 
     JP.prototype.onWSOpen = function() {
@@ -57,9 +67,15 @@
 
     JP.prototype.connect = function(callback) {
       this.sendMessage({
-        action: "connect"
+        event: "connect"
       });
       return this.deviceConnectCallback = callback;
+    };
+
+    JP.prototype.eventHandlers = [];
+
+    JP.prototype.onEvent = function(eventHandler) {
+      return this.eventHandlers.push(eventHandler);
     };
 
     return JP;

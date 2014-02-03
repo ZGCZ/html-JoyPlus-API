@@ -11,8 +11,12 @@ class JP
 
   handleMessage: (message) ->
     data = message.data
-    console.log data
-    # dataObject = JSON.parse(data)
+    # console.log data
+    dataObject = JSON.parse(data)
+    if "event" of dataObject
+      console.log dataObject
+      for handler in this.eventHandlers
+        handler.call(this, dataObject)
 
   onWSOpen: () ->
     console.log "ws open"
@@ -44,7 +48,12 @@ class JP
   # callback(device-name)
   connect: (callback) ->
     this.sendMessage
-      action: "connect"
+      event: "connect"
     this.deviceConnectCallback = callback
+
+  eventHandlers: []
+  onEvent: (eventHandler) ->
+    this.eventHandlers.push(eventHandler)
+
 
 this.JP = new JP()
