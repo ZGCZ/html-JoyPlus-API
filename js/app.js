@@ -11,7 +11,7 @@ $(document).ready(function() {
         down: false,
         left: false,
         right: false
-    }
+    };
 
     JP.onEvent(function(e) {
        if (e.event == "keydown") {
@@ -41,7 +41,7 @@ $(document).ready(function() {
             left: x,
             top: y
         });
-    }
+    };
     refresh();
 
 });

@@ -67,7 +67,8 @@
 
     JP.prototype.connect = function(callback) {
       this.sendMessage({
-        event: "connect"
+        event: "connect",
+        layout: 1
       });
       return this.deviceConnectCallback = callback;
     };
@@ -85,3 +86,7 @@
   this.JP = new JP();
 
 }).call(this);
+
+/*
+//@ sourceMappingURL=jp.map
+*/

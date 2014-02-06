@@ -49,6 +49,7 @@ class JP
   connect: (callback) ->
     this.sendMessage
       event: "connect"
+      layout: 1
     this.deviceConnectCallback = callback
 
   eventHandlers: []
