@@ -48,11 +48,16 @@ class JP
 
   # this.param: callback
   # callback(device-name)
-  connect: (callback) ->
+  connect: (layout, callback) ->
     this.sendMessage
       event: "connect"
-      layout: "Joy2Button"
+      layout: layout
     this.deviceConnectCallback = callback
+
+  changeLayout: (layout) ->
+    this.sendMessage
+      event: "layout"
+      layout: layout
 
   eventHandlers: []
   onEvent: (eventHandler) ->
