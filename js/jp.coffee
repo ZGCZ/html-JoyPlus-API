@@ -10,11 +10,14 @@ class JP
     this.ws.onmessage = this.handleMessage.bind(this)
 
   handleMessage: (message) ->
+    that = this
     data = message.data
     # console.log data
     dataObject = JSON.parse(data)
     if "event" of dataObject
       console.log dataObject
+      if dataObject["event"] == "connect"
+        that.deviceConnectCallback.call(this, dataObject['device'])
       for handler in this.eventHandlers
         handler.call(this, dataObject)
 
@@ -22,7 +25,6 @@ class JP
     console.log "ws open"
     this.sendMessage("GAMEINIT")
     this.startWSCallback()
-
 
   onWSError: () ->
     this.ws = null
