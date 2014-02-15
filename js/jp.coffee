@@ -15,7 +15,7 @@ class JP
     # console.log data
     dataObject = JSON.parse(data)
     if "event" of dataObject
-      console.log dataObject
+      # console.log dataObject
       if dataObject["event"] == "connect"
         that.deviceConnectCallback.call(this, dataObject['device'])
       for handler in this.eventHandlers
