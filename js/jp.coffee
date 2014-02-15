@@ -51,7 +51,7 @@ class JP
   connect: (callback) ->
     this.sendMessage
       event: "connect"
-      layout: 1
+      layout: "Joy2Button"
     this.deviceConnectCallback = callback
 
   eventHandlers: []

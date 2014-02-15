@@ -71,7 +71,7 @@
     JP.prototype.connect = function(callback) {
       this.sendMessage({
         event: "connect",
-        layout: 1
+        layout: "Joy2Button"
       });
       return this.deviceConnectCallback = callback;
     };
